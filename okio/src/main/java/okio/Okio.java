@@ -25,9 +25,11 @@ import java.io.InterruptedIOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
+// BEGIN: j2objc
+//import java.nio.file.Files;
+//import java.nio.file.OpenOption;
+//import java.nio.file.Path;
+// END: j2objc
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement;
@@ -166,12 +168,14 @@ public final class Okio {
     return source(new FileInputStream(file));
   }
 
-  /** Returns a source that reads from {@code path}. */
-  @IgnoreJRERequirement // Should only be invoked on Java 7+.
-  public static Source source(Path path, OpenOption... options) throws IOException {
-    if (path == null) throw new IllegalArgumentException("path == null");
-    return source(Files.newInputStream(path, options));
-  }
+  // BEGIN: j2objc
+  // /** Returns a source that reads from {@code path}. */
+  // @IgnoreJRERequirement // Should only be invoked on Java 7+.
+  // public static Source source(Path path, OpenOption... options) throws IOException {
+  // if (path == null) throw new IllegalArgumentException("path == null");
+  // return source(Files.newInputStream(path, options));
+  // }
+  // END: j2objc
 
   /** Returns a sink that writes to {@code file}. */
   public static Sink sink(File file) throws FileNotFoundException {
@@ -185,12 +189,14 @@ public final class Okio {
     return sink(new FileOutputStream(file, true));
   }
 
-  /** Returns a sink that writes to {@code path}. */
-  @IgnoreJRERequirement // Should only be invoked on Java 7+.
-  public static Sink sink(Path path, OpenOption... options) throws IOException {
-    if (path == null) throw new IllegalArgumentException("path == null");
-    return sink(Files.newOutputStream(path, options));
-  }
+  // BEGIN: j2objc
+//  /** Returns a sink that writes to {@code path}. */
+//  @IgnoreJRERequirement // Should only be invoked on Java 7+.
+//  public static Sink sink(Path path, OpenOption... options) throws IOException {
+//    if (path == null) throw new IllegalArgumentException("path == null");
+//    return sink(Files.newOutputStream(path, options));
+//  }
+  // END: j2objc
 
   /**
    * Returns a source that reads from {@code socket}. Prefer this over {@link
